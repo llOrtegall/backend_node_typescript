@@ -11,6 +11,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 30px;
 }
 
 h2{
@@ -29,7 +30,7 @@ input[type="password"] {
 }
 
 /* Estilos para el botón */
-button {
+button{
   width: 310px;
   background-color: #16b2c7;
   color: rgb(255, 255, 255);
@@ -38,12 +39,29 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   font-size: 18px;
 }
 
-button:hover {
+button:disabled{
+  opacity: 50%;
+}
+
+button:enabled:hover{
+  cursor: pointer;
   background-color: #3ed53c;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   color: rgb(0, 0, 0);
+}
+
+
+input.ng-invalid.ng-touched{
+  border: solid 1px red;
+}
+
+input.ng-valid.ng-touched{
+  border: solid 1px rgb(92, 203, 82);
+}
+
+.divmess{
+  text-align: center;
 }

@@ -5,7 +5,11 @@ import { PageAuthComponent } from './page-auth/page-auth.component';
 const routes: Routes = [
   {
     path: '',
-   component: PageAuthComponent
+    component: PageAuthComponent
+  },
+  {
+    path: '**',
+    component: PageAuthComponent
   }
 ];
 
