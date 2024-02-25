@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+    "target": "ESNext", // Cambiado a ESNext para usar la última versión de JavaScript
+    "module": "CommonJS", // Cambiado a CommonJS para usar importaciones y exportaciones de estilo Node.js
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true, // Agregado para permitir la importación de módulos JSON
+    "isolatedModules": true // Agregado para asegurar que cada archivo se puede transpilar de forma segura
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

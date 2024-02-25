@@ -14,7 +14,6 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
-    'no-console': 'warn', // Advierte sobre el uso de console.log
     'eqeqeq': 'error', // Requiere el uso de === y !==
     'curly': 'error', // Requiere llaves consistentes para todos los bloques de control
     'no-unused-vars': 'warn', // Advierte sobre variables declaradas pero no utilizadas
