@@ -1,12 +1,16 @@
-import express from 'express';
+import express, { Request, Response} from 'express'
 
-const app = express();
-const port = 3000;
+const PORT = 3000
+const app = express()
 
-app.get('/', (req, res) => {
-  res.send('Hola Mundo!');
-});
+app.use(express.json())
 
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`);
-});
+app.get('/', (_req: Request, res: Response) => {
+  console.log('Someone has visited the root route!');
+  res.send('Hello World!')
+})
+
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`)
+})
+
