@@ -1,7 +1,21 @@
 import { pool_mysql } from '../connections/mysql'
-import { ResultSetHeader } from 'mysql2/promise' 
+import { ResultSetHeader, RowDataPacket } from 'mysql2/promise' 
 import { User } from '../types/user'
 import bycript from 'bcryptjs'
+
+interface User_Doc extends RowDataPacket {
+  nombres: string
+  apellidos: string
+  documento: number
+  telefono: number
+  correo: string
+  usuario: string
+  pass_1: string
+  estado: number
+  empresa: number
+  proceso: number
+  rol: string
+}
 
 export const createUserService = async (data: User) => {
   const { apellidos, correo, documento, nombres, telefono } = data
@@ -20,6 +34,11 @@ export const createUserService = async (data: User) => {
 
 export const getUsersService = async () => {
   return pool_mysql.query('SELECT * FROM usuarios')
+}
+
+export const getUserByDocService = async (documento: number): Promise<Partial<User_Doc[]>> => {
+  const [user] = await pool_mysql.execute<User_Doc[]>('SELECT * FROM usuarios WHERE documento = ?', [documento])
+  return user as Partial<User_Doc[]>
 }
 
 export const updateServiceByDoc = async (data: User) => {
