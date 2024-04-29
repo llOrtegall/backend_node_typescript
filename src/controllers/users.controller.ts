@@ -39,8 +39,8 @@ export async function getUsers(_req: Request, res: Response) {
 }
 
 export async function getUserByDoc(req: Request, res: Response) {
-  const data = req.body
-  const documento = data.documento as number
+  const data = req.query
+  const documento = data.documento as unknown as number
 
   if (documento === undefined) {
     return res.status(400).json({ message: 'El campo documento es requerido' })
@@ -48,17 +48,12 @@ export async function getUserByDoc(req: Request, res: Response) {
 
   try {
     const result = await getUserByDocService(documento)
-
-    if (result.length === 0){
-      return res.status(404).json({ message: 'Usuario no encontrado y/o no existe' })
+    if (!result) {
+      return res.status(404).json({ message: 'Usuario no encontrado' })
     }
-
-    if(result[0] === undefined){
-      return res.status(404).json({ message: 'Usuario no encontrado y/o no existe' })
-    }
-
-    const { apellidos, nombres, correo, documento: cedula, telefono } = result[0]
     
+    const { apellidos, nombres, correo, documento: cedula, telefono } = result
+
     return res.status(200).json({
       apellidos,
       nombres,
@@ -66,11 +61,11 @@ export async function getUserByDoc(req: Request, res: Response) {
       cedula,
       telefono
     })
+
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Error al obtener el usuario' })
   }
-
 }
 
 
