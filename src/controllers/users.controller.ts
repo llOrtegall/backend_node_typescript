@@ -13,8 +13,8 @@ export async function createUser(req: Request, res: Response) {
   }
 
   try {
-    const [user] = await createUserService(userValidate.data)
-    if (user.affectedRows === 1) {
+    const result = await createUserService(userValidate.data)
+    if (result.affectedRows === 1) {
       return res.status(201).json({ message: 'Usuario creado correctamente' })
     }
     return res.status(500).json({ message: 'Error al crear el usuario' })
@@ -30,7 +30,7 @@ export async function createUser(req: Request, res: Response) {
 
 export async function getUsers(_req: Request, res: Response) {
   try {
-    const [users] = await getUsersService()
+    const users = await getUsersService()
     return res.status(200).json(users)
   } catch (error) {
     console.log(error);
@@ -41,8 +41,8 @@ export async function getUsers(_req: Request, res: Response) {
 export async function getUserByDoc(req: Request, res: Response) {
   const documento = req.params.documento
   
-  if (documento === undefined) {
-    return res.status(400).json({ message: 'El campo documento es requerido' })
+  if (documento === undefined || documento === null) { 
+    return res.status(400).json({ message: 'El parametro documento es requerido' })
   }
 
   try {
@@ -51,7 +51,7 @@ export async function getUserByDoc(req: Request, res: Response) {
       return res.status(404).json({ message: 'Usuario no encontrado' })
     }
     
-    const { apellidos, nombres, correo, documento: cedula, telefono } = result
+    const { apellidos, nombres, correo, documento: cedula, telefono } = result[0]
 
     return res.status(200).json({
       apellidos,
@@ -78,8 +78,8 @@ export async function updateUserByDoc(req: Request, res: Response) {
   }
 
   try {
-    const [user] = await updateServiceByDoc(userValidate.data)
-    if (user.affectedRows === 1) {
+    const result = await updateServiceByDoc(userValidate.data)
+    if (result.affectedRows === 1) {
       return res.status(200).json({ message: 'Usuario actualizado correctamente' })
     }
     return res.status(500).json({ message: 'Error al actualizar el usuario' })
@@ -102,11 +102,14 @@ export async function deleteUserByDoc(req: Request, res: Response) {
   }
 
   try {
-    const [user] = await deleteServiceByDoc(documento)
-    if (user.affectedRows === 1) {
+    const result = await deleteServiceByDoc(documento)
+    console.log(result);
+    
+    if (result.affectedRows === 1) {
       return res.status(200).json({ message: 'Usuario eliminado correctamente' })
+    } else if (result.affectedRows === 0){
+      return res.status(404).json({ message: 'Usuario no encontrado' })
     }
-    return res.status(500).json({ message: 'Error al eliminar el usuario' })
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Error al eliminar el usuario' })
