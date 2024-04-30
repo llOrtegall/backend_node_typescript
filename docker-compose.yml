@@ -7,8 +7,11 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      TZ: 'America/Bogota'
     expose:
       - "3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
     networks:
       - my_network
   
@@ -16,6 +19,8 @@ services:
     image: node:slim
     container_name: node_cont
     restart: always
+    environment:
+      TZ: 'America/Bogota'
     expose:
       - "9060"
     ports:
