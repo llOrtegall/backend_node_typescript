@@ -16,8 +16,10 @@ export async function createUser(req: Request, res: Response) {
     const result = await createUserService(userValidate.data)
     if (result.affectedRows === 1) {
       return res.status(201).json({ message: 'Usuario creado correctamente' })
+    } else if (result.affectedRows === 0) {
+      return res.status(500).json({ message: 'Error al crear el usuario' })
     }
-    return res.status(500).json({ message: 'Error al crear el usuario' })
+    
   } catch (error) {
     const err = error as ErrorMySQL
     if (err.code === 'ER_DUP_ENTRY') {
@@ -66,7 +68,6 @@ export async function getUserByDoc(req: Request, res: Response) {
     return res.status(500).json({ message: 'Error al obtener el usuario' })
   }
 }
-
 
 export async function updateUserByDoc(req: Request, res: Response) {
   const userValidate = validateUser(req.body)

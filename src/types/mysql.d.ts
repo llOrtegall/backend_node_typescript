@@ -9,15 +9,20 @@ export interface ErrorMySQL {
 }
 
 interface User_Doc extends RowDataPacket{
-  nombres: string
-  apellidos: string
-  documento: number
-  telefono: number
-  correo: string
-  usuario: string
-  pass_1: string
-  estado: number
-  empresa: number
-  proceso: number
-  rol?: string
+  _id: string;
+  nombres: string;
+  apellidos: string;
+  documento: number;
+  telefono: number;
+  correo: string;
+  usuario: string;
+  pass_1: string;
+  pass_2: string;
+  estado: number;
+  empresa: number;
+  proceso: number;
+  rol: string;
+  fecha_creacion: string;
+  resetPasswordToken: string;
+  resetPasswordExpires: string;
 }
