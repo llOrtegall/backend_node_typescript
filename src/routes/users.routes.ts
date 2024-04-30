@@ -5,7 +5,7 @@ export const UserRoutes = Router();
 
 UserRoutes.get('/users', getUsers)
 
-UserRoutes.get('/user', getUserByDoc)
+UserRoutes.get('/user/:documento', getUserByDoc)
 
 UserRoutes.post('/register', createUser)
 

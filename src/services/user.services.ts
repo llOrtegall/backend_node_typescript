@@ -36,7 +36,7 @@ export const getUsersService = async () => {
   return pool_mysql.query('SELECT * FROM usuarios')
 }
 
-export const getUserByDocService = async (documento: number): Promise<Partial<User_Doc>> => {
+export const getUserByDocService = async (documento: string): Promise<Partial<User_Doc>> => {
   const [user] = await pool_mysql.execute<User_Doc[]>('SELECT * FROM usuarios WHERE documento = ?', [documento])
   return user[0]
 }

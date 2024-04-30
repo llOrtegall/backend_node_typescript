@@ -39,9 +39,8 @@ export async function getUsers(_req: Request, res: Response) {
 }
 
 export async function getUserByDoc(req: Request, res: Response) {
-  const data = req.query
-  const documento = data.documento as unknown as number
-
+  const documento = req.params.documento
+  
   if (documento === undefined) {
     return res.status(400).json({ message: 'El campo documento es requerido' })
   }
