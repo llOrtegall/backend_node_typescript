@@ -33,8 +33,7 @@
   - Se creará una tabla llamada "usuarios".
   - Se creará un volumen en la raíz del proyecto llamado "mysql" para almacenar los datos de la base de datos.
 
-## Variables de entorno
-- PORT=9060
+## Propósito
 
 Mi objetivo principal es poner a prueba mis conocimientos. He creado esta API con el propósito de aprender y mejorar mis habilidades en el desarrollo de software. Si tienes alguna sugerencia o recomendación, no dudes en darme feedback. Además, mi propósito es poder recibir feedback de la comunidad para mejorar mis habilidades. Considerando que sé que el código no es perfecto, pero con la ayuda de la comunidad puedo mejorar. 
 
@@ -47,3 +46,7 @@ Mi objetivo principal es poner a prueba mis conocimientos. He creado esta API co
 - Agregar pruebas de seguridad.
 
 No dudes en dejarme tu pull request si deseas colaborar con el proyecto.
+
+## Autor
+- [Ivan Ortega Garzon](IvanOrtega_97@hotmail.com)
+```
