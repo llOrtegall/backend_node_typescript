@@ -6,9 +6,9 @@
   "author": "llOrtegall <IvanOrtega_97@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.ts",
-    "build": "tsc",
-    "start": "node ./dist/index.js"
+    "dev": "tsx watch --env-file=.env ./src/index.ts",
+    "start": "node --env-file=.env ./dist/index.js",
+    "build": "tsc"
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
