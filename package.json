@@ -1,0 +1,23 @@
+{
+  "name": "backend_node_typescript",
+  "module": "index.ts",
+  "version": "1.0.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "A backend project using Node.js and TypeScript",
+  "author": "Ivan Ortega Garzon",
+  "private": true,
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "bun build src/index.ts --outdir=dist --target=node",
+    "start": "bun run build && bun run dist/index.js",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^24.0.14"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
